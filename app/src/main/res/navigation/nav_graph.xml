@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/start_fragment">
+
+    <fragment
+        android:id="@+id/start_fragment"
+        android:name="com.example.tictactoe.StartFragment"
+        android:label="StartFragment">
+        <action
+            android:id="@+id/action_to_register_page"
+            app:destination="@+id/register_fragment" />
+        <action
+            android:id="@+id/action_to_records_page"
+            app:destination="@+id/records_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/register_fragment"
+        android:name="com.example.tictactoe.RegisterFragment"
+        android:label="RegisterFragment">
+        <action
+            android:id="@+id/action_to_game"
+            app:destination="@+id/game_fragment">
+            <argument
+                android:name="first_user"
+                app:argType="string" />
+            <argument
+                android:name="second_user"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/game_fragment"
+        android:name="com.example.tictactoe.GameFragment"
+        android:label="GameFragment">
+        <action
+            android:id="@+id/action_to_records"
+            app:destination="@+id/records_fragment" />
+        <argument
+            android:name="first_user"
+            app:argType="string" />
+        <argument
+            android:name="second_user"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/records_fragment"
+        android:name="com.example.tictactoe.RecordsFragment"
+        android:label="RecordsFragment">
+        <action
+            android:id="@+id/action_return_to_start"
+            app:destination="@+id/start_fragment" />
+    </fragment>
+
+</navigation>
