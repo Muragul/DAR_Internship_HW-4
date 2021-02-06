@@ -74,6 +74,7 @@ class GameFragment : Fragment() {
     }
 
     private fun onBoxClicked(box: ImageView, position: Position) {
+        box.isEnabled = false
         box.setImageResource(gameManager.currentPlayerMark)
         val winningLine = gameManager.makeMove(position)
         if (winningLine != null) {

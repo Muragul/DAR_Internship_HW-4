@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tictactoe.Adapter
 import com.example.tictactoe.R
-import com.example.tictactoe.model.RecordsData
+import com.example.tictactoe.model.RecordsRepository
 
 class RecordsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -26,7 +26,7 @@ class RecordsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = Adapter()
         recyclerView.adapter = adapter
-        adapter.submitList(RecordsData.getRecordsList())
+        adapter.submitList(RecordsRepository.getRecordsList())
 
         rootView.findViewById<Button>(R.id.back_to_main_menu).setOnClickListener {
             findNavController().navigate(RecordsFragmentDirections.actionReturnToStart())

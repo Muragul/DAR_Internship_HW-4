@@ -1,7 +1,7 @@
 package com.example.tictactoe
 
 import com.example.tictactoe.model.Position
-import com.example.tictactoe.model.RecordsData
+import com.example.tictactoe.model.RecordsRepository
 import com.example.tictactoe.model.WinningLine
 
 class GameManager(private val firstPlayer: String, private val secondPlayer: String) {
@@ -28,12 +28,12 @@ class GameManager(private val firstPlayer: String, private val secondPlayer: Str
         } else {
             when (currentPlayer) {
                 1 -> {
-                    RecordsData.updateUserRecord(firstPlayer, true)
-                    RecordsData.updateUserRecord(secondPlayer, false)
+                    RecordsRepository.updateUserRecord(firstPlayer, true)
+                    RecordsRepository.updateUserRecord(secondPlayer, false)
                 }
                 2 -> {
-                    RecordsData.updateUserRecord(secondPlayer, true)
-                    RecordsData.updateUserRecord(firstPlayer, false)
+                    RecordsRepository.updateUserRecord(secondPlayer, true)
+                    RecordsRepository.updateUserRecord(firstPlayer, false)
                 }
             }
         }
