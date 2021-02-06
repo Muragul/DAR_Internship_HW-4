@@ -1,39 +1,29 @@
 package com.example.tictactoe.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.tictactoe.R
+import com.example.tictactoe.databinding.FragmentRegisterBinding
 
-class RegisterFragment : Fragment() {
+class RegisterFragment :
+    BindingFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
 
-    private lateinit var firstUser: String
-    private lateinit var secondUser: String
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_register, container, false)
-        rootView.findViewById<Button>(R.id.button_start_game).setOnClickListener {
-            firstUser = rootView.findViewById<EditText>(R.id.first_user).text.toString()
-            secondUser = rootView.findViewById<EditText>(R.id.second_user).text.toString()
-            if (firstUser != "" && secondUser != "" && firstUser != secondUser)
-                findNavController().navigate(
-                    RegisterFragmentDirections.actionToGame(
-                        firstUser,
-                        secondUser
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.run {
+            buttonStartGame.setOnClickListener {
+                val firstPlayer = firstUser.text.toString()
+                val secondPlayer = secondUser.text.toString()
+                if (firstPlayer != "" && secondPlayer != "" && firstPlayer != secondPlayer)
+                    findNavController().navigate(
+                        RegisterFragmentDirections.actionToGame(
+                            firstPlayer,
+                            secondPlayer
+                        )
                     )
-                )
-            else
-                Toast.makeText(context, "Fill out correct data", Toast.LENGTH_SHORT).show()
+                else
+                    Toast.makeText(context, "Fill out correct data", Toast.LENGTH_SHORT).show()
+            }
         }
-        return rootView
     }
 }

@@ -1,30 +1,21 @@
 package com.example.tictactoe.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
-import com.example.tictactoe.R
+import com.example.tictactoe.databinding.FragmentStartBinding
 
-class StartFragment : Fragment() {
+class StartFragment : BindingFragment<FragmentStartBinding>(FragmentStartBinding::inflate) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_start, container, false)
-        rootView.findViewById<Button>(R.id.button_new_game).setOnClickListener {
-            findNavController().navigate(StartFragmentDirections.actionToRegisterPage())
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.run {
+            buttonNewGame.setOnClickListener {
+                findNavController().navigate(StartFragmentDirections.actionToRegisterPage())
+            }
+            buttonViewRecords.setOnClickListener {
+                findNavController().navigate(StartFragmentDirections.actionToRecordsPage())
+            }
         }
-        rootView.findViewById<Button>(R.id.button_view_records).setOnClickListener {
-            findNavController().navigate(StartFragmentDirections.actionToRecordsPage())
-        }
-
-        return rootView
     }
-
 
 }

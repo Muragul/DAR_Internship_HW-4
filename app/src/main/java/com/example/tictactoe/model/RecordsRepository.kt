@@ -14,9 +14,9 @@ object RecordsRepository {
         val user = getUserRecord(username)
         recordsList.remove(getUserRecord(username))
         if (isWinner)
-            user.winCount = user.winCount + 1
+            user.winCount++
         else
-            user.loseCount = user.loseCount + 1
+            user.loseCount++
         recordsList.add(user)
     }
 }
