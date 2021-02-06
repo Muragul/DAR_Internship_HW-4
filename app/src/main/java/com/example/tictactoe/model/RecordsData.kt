@@ -1,12 +1,8 @@
-package com.example.tictactoe
+package com.example.tictactoe.model
 
 object RecordsData {
 
     private var recordsList: MutableSet<Record> = mutableSetOf()
-
-    init {
-        for (i in 0..5) recordsList.add(Record("User$i", 0, 0))
-    }
 
     fun getRecordsList(): List<Record> {
         return recordsList.toList()
@@ -24,9 +20,5 @@ object RecordsData {
         else
             user.loseCount++
         recordsList.add(user)
-    }
-
-    fun getRecordsListSize(): Int {
-        return recordsList.size
     }
 }

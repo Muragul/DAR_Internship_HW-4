@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tictactoe.model.Record
 
 class Adapter : RecyclerView.Adapter<Adapter.MyViewHolder>() {
     private var list = listOf<Record>()

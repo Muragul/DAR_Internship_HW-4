@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.example.tictactoe.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.tictactoe.R
 
 class RegisterFragment : Fragment() {
 
@@ -23,7 +24,7 @@ class RegisterFragment : Fragment() {
         rootView.findViewById<Button>(R.id.button_start_game).setOnClickListener {
             firstUser = rootView.findViewById<EditText>(R.id.first_user).text.toString()
             secondUser = rootView.findViewById<EditText>(R.id.second_user).text.toString()
-            if (firstUser != "" && secondUser != "")
+            if (firstUser != "" && secondUser != "" && firstUser != secondUser)
                 findNavController().navigate(
                     RegisterFragmentDirections.actionToGame(
                         firstUser,
@@ -31,7 +32,7 @@ class RegisterFragment : Fragment() {
                     )
                 )
             else
-                Toast.makeText(context, "Fill out the data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Fill out correct data", Toast.LENGTH_SHORT).show()
         }
         return rootView
     }

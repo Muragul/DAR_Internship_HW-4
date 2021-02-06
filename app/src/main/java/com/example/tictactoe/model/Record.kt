@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.example.tictactoe.model
 
 data class Record(
     val name: String,
