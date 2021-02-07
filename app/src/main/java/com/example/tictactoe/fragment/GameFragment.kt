@@ -56,18 +56,23 @@ class GameFragment : BindingFragment<FragmentGameBinding>(FragmentGameBinding::i
 
     private fun showWinnerLine(winningLine: WinningLine) {
         binding.run {
-            val boxList = when (winningLine) {
-                WinningLine.ROW_0 -> listOf(cell1, cell2, cell3)
-                WinningLine.ROW_1 -> listOf(cell4, cell5, cell6)
-                WinningLine.ROW_2 -> listOf(cell7, cell8, cell9)
-                WinningLine.COLUMN_0 -> listOf(cell1, cell4, cell7)
-                WinningLine.COLUMN_1 -> listOf(cell2, cell5, cell8)
-                WinningLine.COLUMN_2 -> listOf(cell3, cell6, cell9)
-                WinningLine.DIAGONAL_LEFT -> listOf(cell1, cell5, cell9)
-                WinningLine.DIAGONAL_RIGHT -> listOf(cell3, cell5, cell7)
-            }
-            boxList.forEach { box ->
-                box.setBackgroundColor(Color.CYAN)
+            if (winningLine == WinningLine.NOBODY)
+                enableContinueButton()
+            else {
+                val boxList = when (winningLine) {
+                    WinningLine.ROW_0 -> listOf(cell1, cell2, cell3)
+                    WinningLine.ROW_1 -> listOf(cell4, cell5, cell6)
+                    WinningLine.ROW_2 -> listOf(cell7, cell8, cell9)
+                    WinningLine.COLUMN_0 -> listOf(cell1, cell4, cell7)
+                    WinningLine.COLUMN_1 -> listOf(cell2, cell5, cell8)
+                    WinningLine.COLUMN_2 -> listOf(cell3, cell6, cell9)
+                    WinningLine.DIAGONAL_LEFT -> listOf(cell1, cell5, cell9)
+                    WinningLine.DIAGONAL_RIGHT -> listOf(cell3, cell5, cell7)
+                    WinningLine.NOBODY -> listOf()
+                }
+                boxList.forEach { box ->
+                    box.setBackgroundColor(Color.CYAN)
+                }
             }
         }
     }

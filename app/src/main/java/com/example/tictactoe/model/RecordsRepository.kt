@@ -19,4 +19,10 @@ object RecordsRepository {
             user.loseCount++
         recordsList.add(user)
     }
+
+    fun noWinnerUpdateRecord(username: String) {
+        val user = getUserRecord(username)
+        recordsList.remove(getUserRecord(username))
+        recordsList.add(user)
+    }
 }

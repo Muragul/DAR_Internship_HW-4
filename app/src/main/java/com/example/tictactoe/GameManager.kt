@@ -23,17 +23,24 @@ class GameManager(private val firstPlayer: String, private val secondPlayer: Str
         state[position.row][position.column] = currentPlayer
         val winningLine = hasGameEnded()
 
-        if (winningLine == null) {
-            currentPlayer = 3 - currentPlayer
-        } else {
-            when (currentPlayer) {
-                1 -> {
-                    RecordsRepository.updateUserRecord(firstPlayer, true)
-                    RecordsRepository.updateUserRecord(secondPlayer, false)
-                }
-                2 -> {
-                    RecordsRepository.updateUserRecord(secondPlayer, true)
-                    RecordsRepository.updateUserRecord(firstPlayer, false)
+        when (winningLine) {
+            null -> {
+                currentPlayer = 3 - currentPlayer
+            }
+            WinningLine.NOBODY -> {
+                RecordsRepository.noWinnerUpdateRecord(firstPlayer)
+                RecordsRepository.noWinnerUpdateRecord(secondPlayer)
+            }
+            else -> {
+                when (currentPlayer) {
+                    1 -> {
+                        RecordsRepository.updateUserRecord(firstPlayer, true)
+                        RecordsRepository.updateUserRecord(secondPlayer, false)
+                    }
+                    2 -> {
+                        RecordsRepository.updateUserRecord(secondPlayer, true)
+                        RecordsRepository.updateUserRecord(firstPlayer, false)
+                    }
                 }
             }
         }
@@ -66,7 +73,8 @@ class GameManager(private val firstPlayer: String, private val secondPlayer: Str
             return WinningLine.DIAGONAL_LEFT
         } else if (state[0][2] == currentPlayer && state[1][1] == currentPlayer && state[2][0] == currentPlayer) {
             return WinningLine.DIAGONAL_RIGHT
-        }
+        } else if (state[0][0] != 0 && state[0][1] != 0 && state[0][2] != 0 && state[1][0] != 0 && state[1][1] != 0 && state[1][2] != 0 && state[2][0] != 0 && state[2][1] != 0 && state[2][2] != 0)
+            return WinningLine.NOBODY
         return null
     }
 }
